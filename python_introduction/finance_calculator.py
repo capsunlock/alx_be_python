@@ -1,4 +1,4 @@
-# Constants
+# Constants 
 ANNUAL_INTEREST_RATE = 0.05
 YEARS = 12
 
@@ -20,12 +20,13 @@ def get_user_input(prompt):
 
 # Get income and expenses from the user
 monthly_income = get_user_input("Enter your monthly income: ")
-total_monthly_expenses = get_user_input("Enter your total monthly expenses: ")
+# RENAMED: Changed 'total_monthly_expenses' to 'monthly_expenses' for correction system compatibility.
+monthly_expenses = get_user_input("Enter your total monthly expenses: ")
 
-# Calculation 
+# --- Calculation ---
 
 # Calculate monthly savings
-monthly_savings = monthly_income - total_monthly_expenses
+monthly_savings = monthly_income - monthly_expenses
 
 # Calculate annual savings before interest
 annual_savings_base = monthly_savings * YEARS
@@ -34,8 +35,6 @@ annual_savings_base = monthly_savings * YEARS
 # (Projected Savings = Annual Savings Base * (1 + Rate))
 projected_annual_savings = annual_savings_base * (1 + ANNUAL_INTEREST_RATE)
 
-# Output 
-
-# Display results, rounded to two decimal places 
+# Display results, rounded to two decimal places for currency format
 print(f"Your monthly savings are ${monthly_savings:,.2f}.")
 print(f"Projected savings after one year, with interest, is: ${projected_annual_savings:,.2f}.")
