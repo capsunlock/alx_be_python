@@ -2,7 +2,7 @@
 length = 10
 
 # width of the rectangle
-width  = 5
+width = 5
 
 # Calculation --- Area = length * width
 # The result is stored in 'area'.
