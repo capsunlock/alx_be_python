@@ -14,41 +14,48 @@ def daily_reminder():
     # Standardize time_bound input for the if statement
     time_bound = input("Is it time-bound? (yes/no): ").lower().strip()
 
+    # Variable to hold the final reminder message
+    final_reminder = ""
+
     # 2. Process the Task Based on Priority and Time Sensitivity
     
-    # Initialize a base reminder message
-    base_message = f"Note: '{task}' is a {priority} priority task."
-    
-    # 3. Provide a Customized Reminder using Match Case
-    match priority:
-        case 'high':
-            # High priority tasks often need more urgency.
-            if time_bound == 'yes':
-                # Time-bound high priority task requires immediate attention
-                final_reminder = f"Reminder: '{task}' is a high priority task that requires immediate attention today!"
-            else:
-                final_reminder = f"Reminder: '{task}' is a high priority task. Plan to complete it early."
-                
-        case 'medium':
-            # Medium priority tasks are important but can wait a moment.
-            if time_bound == 'yes':
-                final_reminder = f"Reminder: '{task}' is a medium priority task that requires immediate attention today!"
-            else:
-                final_reminder = f"Note: '{task}' is a medium priority task. Schedule time for it soon."
+    if time_bound == 'yes':
+        # If the task is time-bound, it requires the "immediate attention" message
+        # and the "Reminder:" prefix, regardless of priority level.
+        
+        # Use Match Case to build the core task description
+        match priority:
+            case 'high':
+                base_text = f"'{task}' is a high priority task"
+            case 'medium':
+                base_text = f"'{task}' is a medium priority task"
+            case 'low':
+                base_text = f"'{task}' is a low priority task"
+            case _:
+                base_text = f"'{task}' has an unrecognized priority ({priority}) and is time-bound"
 
-        case 'low':
-            # Low priority tasks are flexible.
-            if time_bound == 'yes':
-                # Even low priority time-bound tasks need that specific message
-                final_reminder = f"Reminder: '{task}' is a low priority task that requires immediate attention today!"
-            else:
-                final_reminder = f"Note: '{task}' is a low priority task. Consider completing it when you have free time."
+        # Construct the final reminder string for immediate action
+        # The required message should be 'that requires immediate attention today!'
+        final_reminder = f"Reminder: {base_text} that requires immediate attention today!"
 
-        case _:
-            # Handle unrecognized priority input
-            final_reminder = f"Warning: Priority '{priority}' not recognized. Please focus on task: '{task}'."
+    else:
+        # If the task is NOT time-bound, use the "Note:" prefix and soft advice.
+        # Use Match Case to determine the appropriate softer reminder based on priority.
+        match priority:
+            case 'high':
+                advice = "Plan to complete it early in the day."
+                final_reminder = f"Note: '{task}' is a high priority task. {advice}"
+            case 'medium':
+                advice = "Schedule time for it soon."
+                final_reminder = f"Note: '{task}' is a medium priority task. {advice}"
+            case 'low':
+                # Matches the example output for non-time-bound low priority
+                advice = "Consider completing it when you have free time."
+                final_reminder = f"Note: '{task}' is a low priority task. {advice}"
+            case _:
+                final_reminder = f"Warning: Priority '{priority}' not recognized. Please focus on task: '{task}'."
 
-    # Print the final reminder
+    # 3. Print the final reminder
     print("\n" + final_reminder)
 
 # Run the function
