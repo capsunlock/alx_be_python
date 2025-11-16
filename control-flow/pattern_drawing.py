@@ -7,6 +7,7 @@ def draw_square_pattern():
 
     # 1. Prompt User for Pattern Size
     try:
+        # Ask for the pattern size and convert it to an integer
         size_input = input("Enter the size of the pattern: ")
         size = int(size_input)
 
@@ -22,16 +23,15 @@ def draw_square_pattern():
     # Initialize a counter for the rows (for the while loop)
     row_count = 0
 
-    # 2. Draw the Pattern using a while loop for rows
+    # 2. Draw the Pattern
+    # Outer loop (while loop) controls the number of rows
     while row_count < size:
-        # Use a for loop for columns to print asterisks in a single row
-        # The range starts at 0 and goes up to 'size' (exclusive), running 'size' times.
+        # Inner loop (for loop) controls the number of columns (asterisks) in a single row
         for _ in range(size):
             # Print an asterisk, preventing a newline after each one
             print("*", end="")
 
-        # After the inner for loop finishes (one row is complete),
-        # print a newline character to move to the next row
+        # After the inner for loop finishes, print a newline character to move to the next row
         print()
 
         # Increment the row counter for the while loop
