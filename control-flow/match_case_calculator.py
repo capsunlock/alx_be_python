@@ -1,53 +1,61 @@
-# --- User Input Handling ---
-
-def get_number(prompt):
+def calculator():
     """
-    Prompts the user for numerical input and validates it.
+    Prompts the user for two numbers and an operation, then performs
+    the calculation using a match-case statement.
     """
-    while True:
-        try:
-            # Use float() to allow for decimal numbers in the calculation
-            return float(input(prompt))
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
+    print("--- Simple Calculator with Match Case ---")
 
-# Get the two numbers from the user
-num1 = get_number("Enter the first number: ")
-num2 = get_number("Enter the second number: ")
+    # 1. Prompt for User Input
+    try:
+        # Get the first number (num1)
+        # Using float() to allow for decimal numbers
+        num1_input = input("Enter the first number: ")
+        num1 = float(num1_input)
 
-# Get the operation choice from the user
-operation = input("Choose the operation (+, -, *, /): ")
+        # Get the second number (num2)
+        num2_input = input("Enter the second number: ")
+        num2 = float(num2_input)
 
-# --- Match Case Logic ---
-result = None
-error_message = None
+    except ValueError:
+        print("Invalid input. Please enter valid numbers.")
+        return
 
-# The match statement checks the value of the 'operation' variable
-match operation:
-    case '+':
-        result = num1 + num2
-    
-    case '-':
-        result = num1 - num2
-    
-    case '*':
-        result = num1 * num2
-    
-    case '/':
-        # Case for division: Must handle division by zero
-        if num2 != 0:
-            result = num1 / num2
-        else:
-            error_message = "Cannot divide by zero."
-            
-    case _:
-        # The underscore (_) acts as a default/catch-all case for invalid operations
-        error_message = f"Error: '{operation}' is not a recognized operation."
+    # Get the operation choice
+    operation = input("Choose the operation (+, -, *, /): ")
 
-# --- Output Result ---
+    # Variable to hold the result
+    result = None
+    message = ""
 
-if error_message:
-    print(error_message)
-elif result is not None:
-    # Display the result, rounded to two decimal places for readability
-    print(f"The result is {result:.2f}.")
+    # 2. Perform the Calculation Using Match Case
+    match operation:
+        case '+':
+            # Addition
+            result = num1 + num2
+            message = f"The result is {result}."
+        case '-':
+            # Subtraction
+            result = num1 - num2
+            message = f"The result is {result}."
+        case '*':
+            # Multiplication
+            result = num1 * num2
+            message = f"The result is {result}."
+        case '/':
+            # Division
+            if num2 != 0:
+                result = num1 / num2
+                message = f"The result is {result}."
+            else:
+                # Handle division by zero case gracefully
+                message = "Cannot divide by zero."
+        case _:
+            # Default case for invalid operation input
+            message = f"Error: Invalid operation '{operation}'. Please choose one of +, -, *, /."
+
+    # 3. Output the Result
+    print(message)
+
+# Run the calculator function
+if __name__ == "__main__":
+    calculator()
