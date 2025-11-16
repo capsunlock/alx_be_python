@@ -1,14 +1,17 @@
+# --- User Input Handling ---
 
-# --- Input Handling ---
-
-# Get the first number from the user. We use float() to handle decimals.
 def get_number(prompt):
+    """
+    Prompts the user for numerical input and validates it.
+    """
     while True:
         try:
+            # Use float() to allow for decimal numbers in the calculation
             return float(input(prompt))
         except ValueError:
             print("Invalid input. Please enter a valid number.")
 
+# Get the two numbers from the user
 num1 = get_number("Enter the first number: ")
 num2 = get_number("Enter the second number: ")
 
@@ -46,6 +49,5 @@ match operation:
 if error_message:
     print(error_message)
 elif result is not None:
-    # Use f-string formatting to display the result cleanly
-    # :.2f ensures the result is displayed with up to two decimal places
+    # Display the result, rounded to two decimal places for readability
     print(f"The result is {result:.2f}.")
