@@ -23,38 +23,35 @@ def calculator():
     # Get the operation choice
     operation = input("Choose the operation (+, -, *, /): ")
 
-    # Variable to hold the result
-    result = None
-    message = ""
-
     # 2. Perform the Calculation Using Match Case
     match operation:
         case '+':
             # Addition
             result = num1 + num2
-            message = f"The result is {result}."
+            # 3. Output the Result
+            print(f"The result is {result}.")
         case '-':
             # Subtraction
             result = num1 - num2
-            message = f"The result is {result}."
+            # 3. Output the Result
+            print(f"The result is {result}.")
         case '*':
             # Multiplication
             result = num1 * num2
-            message = f"The result is {result}."
+            # 3. Output the Result
+            print(f"The result is {result}.")
         case '/':
             # Division
             if num2 != 0:
                 result = num1 / num2
-                message = f"The result is {result}."
+                # 3. Output the Result
+                print(f"The result is {result}.")
             else:
                 # Handle division by zero case gracefully
-                message = "Cannot divide by zero."
+                print("Cannot divide by zero.")
         case _:
             # Default case for invalid operation input
-            message = f"Error: Invalid operation '{operation}'. Please choose one of +, -, *, /."
-
-    # 3. Output the Result
-    print(message)
+            print(f"Error: Invalid operation '{operation}'. Please choose one of +, -, *, /.")
 
 # Run the calculator function
 if __name__ == "__main__":
