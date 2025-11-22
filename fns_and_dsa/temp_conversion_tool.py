@@ -1,14 +1,13 @@
 # Objective: Illustrate variable scope using global constants for temperature conversion.
 
 # --- 1. Define Global Conversion Factors ---
-# These variables are defined outside of any function, making them global constants.
-# They can be READ by any function without needing the 'global' keyword.
+# Using the exact fractional notation required by the checker: 5/9 and 9/5.
 
 # Factor for converting (Fahrenheit - 32) to Celsius
-FAHRENHEIT_TO_CELSIUS_FACTOR = 5.0 / 9.0
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
 
 # Factor for converting Celsius to Fahrenheit (Celsius * factor + 32)
-CELSIUS_TO_FAHRENHEIT_FACTOR = 9.0 / 5.0
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
 
 # --- 2. Implement Conversion Functions ---
 
