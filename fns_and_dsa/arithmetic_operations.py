@@ -1,4 +1,4 @@
-# Objective: Define a function to perform basic arithmetic operations.
+# Objective: Define a function to perform basic arithmetic operations using if/elif/else.
 
 # Define a constant for the division by zero error message.
 DIVISION_BY_ZERO_ERROR = "Division by zero is not allowed."
@@ -16,24 +16,25 @@ def perform_operation(num1, num2, operation):
         float or str: The result of the operation, or an error string if
                       division by zero occurs or the operation is invalid.
     """
-    # Use the match case statement for clean handling of the four operations
-    match operation.lower():
-        case 'add':
-            return num1 + num2
-        
-        case 'subtract':
-            return num1 - num2
-        
-        case 'multiply':
-            return num1 * num2
-        
-        case 'divide':
-            # Critical: Check for division by zero before performing the operation
-            if num2 == 0:
-                return DIVISION_BY_ZERO_ERROR
-            else:
-                return num1 / num2
-        
-        case _:
-            # Handle any input that doesn't match the four required operations
-            return f"Error: Invalid operation '{operation}'. Must be one of: add, subtract, multiply, divide."
+    # Normalize the operation string to handle case variations
+    op = operation.lower()
+
+    if op == 'add':
+        return num1 + num2
+    
+    elif op == 'subtract':
+        return num1 - num2
+    
+    elif op == 'multiply':
+        return num1 * num2
+    
+    elif op == 'divide':
+        # Critical: Handle division by zero scenario
+        if num2 == 0:
+            return DIVISION_BY_ZERO_ERROR
+        else:
+            return num1 / num2
+    
+    else:
+        # Default case for any unrecognized operation
+        return f"Error: Invalid operation '{operation}'. Must be one of: add, subtract, multiply, divide."
