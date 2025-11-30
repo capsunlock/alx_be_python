@@ -38,7 +38,7 @@ class TestSimpleCalculator(unittest.TestCase):
         # Subtracting zero
         self.assertEqual(self.calc.subtract(100, 0), 100)
 
-    def test_multiply(self):
+    def test_multiplication(self):
         """Test the multiplication method with various combinations and zero."""
         # Positive result
         self.assertEqual(self.calc.multiply(3, 4), 12)
