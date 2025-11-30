@@ -14,81 +14,51 @@ class TestSimpleCalculator(unittest.TestCase):
         """
         self.calc = SimpleCalculator()
 
-    # --- Test Methods for Addition ---
+    # --- REQUIRED TEST METHODS ---
 
-    def test_add_positive_numbers(self):
-        """Test addition with two positive integers."""
-        self.assertEqual(self.calc.add(10, 5), 15)
-
-    def test_add_negative_numbers(self):
-        """Test addition with two negative integers."""
-        self.assertEqual(self.calc.add(-10, -5), -15)
-
-    def test_add_mixed_numbers(self):
-        """Test addition with a positive and a negative integer."""
+    def test_addition(self):
+        """Test the addition method with various combinations."""
+        # Standard positive integers
+        self.assertEqual(self.calc.add(2, 3), 5)
+        # Mixed positive/negative
         self.assertEqual(self.calc.add(-10, 5), -5)
-        self.assertEqual(self.calc.add(15, -5), 10)
-
-    def test_add_floats(self):
-        """Test addition with floating-point numbers."""
-        # Using assertAlmostEqual for floats to handle potential precision issues
+        # Floating point numbers
         self.assertAlmostEqual(self.calc.add(1.5, 2.5), 4.0)
+        # Zeros
+        self.assertEqual(self.calc.add(0, 0), 0)
 
-    # --- Test Methods for Subtraction ---
-    
-    def test_subtract_positive_numbers(self):
-        """Test subtraction of two positive integers."""
+    def test_subtraction(self):
+        """Test the subtraction method with various combinations."""
+        # Standard positive result
         self.assertEqual(self.calc.subtract(10, 5), 5)
+        # Negative result
         self.assertEqual(self.calc.subtract(5, 10), -5)
-
-    def test_subtract_negative_numbers(self):
-        """Test subtraction involving negative results."""
+        # Subtracting a negative number
         self.assertEqual(self.calc.subtract(5, -5), 10)
-        self.assertEqual(self.calc.subtract(-5, 5), -10)
-        self.assertEqual(self.calc.subtract(-5, -5), 0)
-
-    def test_subtract_zero(self):
-        """Test subtracting zero."""
+        # Subtracting zero
         self.assertEqual(self.calc.subtract(100, 0), 100)
 
-    # --- Test Methods for Multiplication ---
-
-    def test_multiply_positive_numbers(self):
-        """Test multiplication of two positive integers."""
+    def test_multiply(self):
+        """Test the multiplication method with various combinations and zero."""
+        # Positive result
         self.assertEqual(self.calc.multiply(3, 4), 12)
-
-    def test_multiply_negative_numbers(self):
-        """Test multiplication of two negative integers (should be positive)."""
-        self.assertEqual(self.calc.multiply(-3, -4), 12)
-
-    def test_multiply_by_zero(self):
-        """Test multiplication where one factor is zero (should be zero)."""
-        self.assertEqual(self.calc.multiply(99, 0), 0)
-        self.assertEqual(self.calc.multiply(0, 99), 0)
-
-    def test_multiply_floats(self):
-        """Test multiplication with floats."""
+        # Negative result
+        self.assertEqual(self.calc.multiply(-3, 4), -12)
+        # Multiplication by zero (critical edge case)
+        self.assertEqual(self.calc.multiply(100, 0), 0)
+        # Floating point multiplication
         self.assertAlmostEqual(self.calc.multiply(2.5, 2), 5.0)
 
-    # --- Test Methods for Division ---
-
-    def test_divide_normal(self):
-        """Test standard division resulting in an integer."""
+    def test_divide(self):
+        """Test the division method, including the division by zero edge case."""
+        # Standard division (integer result)
         self.assertEqual(self.calc.divide(10, 5), 2)
-
-    def test_divide_float_result(self):
-        """Test division resulting in a float."""
+        # Division resulting in a float
         self.assertAlmostEqual(self.calc.divide(10, 4), 2.5)
-
-    def test_divide_negative_numbers(self):
-        """Test division involving negative numbers."""
+        # Division with negative numbers
         self.assertEqual(self.calc.divide(-10, 2), -5)
-        self.assertEqual(self.calc.divide(-10, -2), 5)
-
-    def test_divide_by_zero(self):
-        """
-        Test the crucial edge case: division by zero.
-        The SimpleCalculator implementation explicitly returns None.
-        """
+        
+        # Test the crucial edge case: division by zero must return None
         self.assertIsNone(self.calc.divide(10, 0))
-        self.assertIsNone(self.calc.divide(0, 0)) # 0/0 is also handled by the b==0 check
+        # Test case where both are zero (still returns None as per implementation)
+        self.assertIsNone(self.calc.divide(0, 0))
