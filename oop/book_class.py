@@ -10,7 +10,7 @@ class Book:
         self.title = title
         self.author = author
         self.year = year
-        print(f"Book instance created: {self.title}")
+        # Removed: print(f"Book instance created: {self.title}") to match expected output
 
     def __str__(self):
         """
